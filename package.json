@@ -1,7 +1,8 @@
 {
   "name": "entregable3",
   "version": "1.0.0",
-  "description": "",
+  "description": "entrega 3",
+  "type": "module",
   "main": "ProductManager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
