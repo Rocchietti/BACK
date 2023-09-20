@@ -15,8 +15,8 @@ app.get('/api/productos', async (req,res) => {
 app.get('/api/productos/:pid', async (req,res) => {
     console.log(req.params);
     const {pid} = req.params
-    const idProducto = await Producto.getProductById(pid)
-    res.json({message:'Producto por ID', idProducto})
+    const idProducto = await Producto.getProductById(+pid)
+    return idProducto ? res.json({message:'Producto por ID', idProducto}) : res.json('No se ha validado la informacion');
 }
 )
 app.get('/cellfone', (req,res) => {
