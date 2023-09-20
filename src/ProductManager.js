@@ -83,7 +83,7 @@ class ProductManager {
 const Producto1= {
     title: 'producto prueba',
     description:'Este es un producto prueba',
-    price:200,
+    price:2030,
     thumbnail:'Sin imagen',
     code:'abc123',
     stock:25
@@ -91,7 +91,7 @@ const Producto1= {
 const Producto2= {
     title: 'producto prueba',
     description:'Este es un producto prueba',
-    price:200,
+    price:2100,
     thumbnail:'Sin imagen',
     code:'abc123',
     stock:25
@@ -100,30 +100,91 @@ const Producto2= {
 const Producto3= {
     title: 'producto prueba',
     description:'Este es un producto prueba',
-    price:200,
+    price:900,
     thumbnail:'Sin imagen',
     code:'abc123',
     stock:25
 }
 const Producto4= {
-    title: 'producto prueba',
+    title: 'gloria',
     description:'Este es un producto prueba',
-    price:200,
+    price:700,
+    thumbnail:'Sin imagen',
+    code:'abc123',
+    stock:25
+}
+const Producto5= {
+    title: 'exito',
+    description:'Este es un producto prueba',
+    price:500,
+    thumbnail:'Sin imagen',
+    code:'abc123',
+    stock:25
+}
+const Producto6= {
+    title: 'rivadavia',
+    description:'Este es un producto prueba',
+    price:400,
+    thumbnail:'Sin imagen',
+    code:'abc123',
+    stock:25
+}
+const Producto7= {
+    title: 'la caja',
+    description:'Este es un producto prueba',
+    price:365,
+    thumbnail:'Sin imagen',
+    code:'abc123',
+    stock:25
+}
+const Producto8= {
+    title: 'san cristobal',
+    description:'Este es un producto prueba',
+    price:245,
+    thumbnail:'Sin imagen',
+    code:'abc123',
+    stock:25
+}
+const Producto9= {
+    title: 'medife',
+    description:'Este es un producto prueba',
+    price:2097,
+    thumbnail:'Sin imagen',
+    code:'abc123',
+    stock:25
+}
+const Producto10= {
+    title: 'salud',
+    description:'Este es un producto prueba',
+    price:208,
+    thumbnail:'Sin imagen',
+    code:'abc123',
+    stock:25
+}
+const Producto11= {
+    title: 'sancor',
+    description:'Este es un producto prueba',
+    price:22,
     thumbnail:'Sin imagen',
     code:'abc123',
     stock:25
 }
 
-/* 
-    async function test () { 
+
+/*     async function test () { 
         const Producto =  new ProductManager('productos.json') 
         await Producto.addproduct(Producto1)
         await Producto.addproduct(Producto2)
         await Producto.addproduct(Producto3)
         await Producto.addproduct(Producto4)
-        await Producto.updateProduct(Producto4)
-        await Producto.deleteProduct(Producto4)
+        await Producto.addproduct(Producto5)
+        await Producto.addproduct(Producto6)
+        await Producto.addproduct(Producto7)
+        await Producto.addproduct(Producto8)
+        await Producto.addproduct(Producto9)
+        await Producto.addproduct(Producto10)
+        await Producto.addproduct(Producto11)
     }
-test()
-  */
+test() */
+ 
 export const Producto = new ProductManager()

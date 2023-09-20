@@ -1,5 +1,5 @@
 import express from 'express'
-import { Producto } from './ProductManager.js'
+import {Producto} from './ProductManager.js'
 
 const app = express()
 
@@ -15,7 +15,7 @@ app.get('/api/productos', async (req,res) => {
 app.get('/api/productos/:pid', async (req,res) => {
     console.log(req.params);
     const {pid} = req.params
-    const idProducto = await Producto.getProductById(+pid)
+    const idProducto = await Producto.getProductById(pid)
     res.json({message:'Producto por ID', idProducto})
 }
 )
