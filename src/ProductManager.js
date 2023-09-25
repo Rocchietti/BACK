@@ -32,7 +32,8 @@ class ProductManager {
         }else {
             id = productos[productos.length-1].id + 1 
         }
-        productos.push({id,...product})
+        const newProduct = {id, ... product}
+        productos.push(newProduct)
         await promises.writeFile(path, JSON.stringify(productos))
         } catch (error) {
             console.log('no se puede añadir un producto en este momento');
@@ -42,12 +43,8 @@ class ProductManager {
     async getProductById(idProducto){
         try {
             const productos= await this.getProduct({})
-            const producto= productos.find(u=>u.id===idProducto)
-            if(!productos){
-                return 'No se ha encontrado el producto'
-            } else {
-                return producto
-            }
+            const producto= productos.find(p=>p.id===idProducto)
+            return producto;
         } catch (error) {
             return 'lo sentimos, no pudimos continuar con su busqueda'
         }
@@ -55,24 +52,28 @@ class ProductManager {
     async deleteProduct(idProducto) {
         try {
             const productos= await this.getProduct({})
-            const productActualizado= productos.filter(u=>u.id===idProducto)
-            await promises.readFile(path, JSON.stringify(productActualizado))
+            const product = productos.find(p=> p.id==id)
+            if(product){
+                const productActualizado= productos.filter(p=>p.id===idProducto)
+                await promises.readFile(path, JSON.stringify(productActualizado))
+            }
+            return error
         } catch (error) {
             return error
         }
     }
 
-    async updateProduct(idProducto, campo){
+    async updateProduct(idProducto, obj){
         try {
             const productos= await this.getProduct({})
-            const elemento = productos.findIndex((p) => p.id === idProducto)
-            if(elemento === -1){
-                return -1
+            const index = productos.findIndex(p => p.id === idProducto)
+            if(index === -1 ){
+                return null;
             }
-            const product = productos[elemento]
-            productos[elemento] = [{...product, ...campo}]
+            const updateProdu = {...productos[index], ...obj}
+            productos.splice(index, 1, updateProdu)
             await promises.writeFile(path, JSON.stringify(productos))
-            return 1
+            return updateProdu
         } catch (error) {
             return 'No se pudo actualizar el producto'
         }
