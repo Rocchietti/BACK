@@ -26,13 +26,14 @@ class ProductManager {
             console.log('Vuelva a intentar');
             return 
         }
+        let status = true
         let id 
         if(!productos.length){
             id = 1
         }else {
             id = productos[productos.length-1].id + 1 
         }
-        const newProduct = {id, ... product}
+        const newProduct = {id, ... product, ... status}
         productos.push(newProduct)
         await promises.writeFile(path, JSON.stringify(productos))
         } catch (error) {
@@ -82,7 +83,7 @@ class ProductManager {
     }
 
 const Producto1= {
-    title: 'producto prueba',
+    title: 'Tarjeta de video',
     description:'Este es un producto prueba',
     price:2030,
     thumbnail:'Sin imagen',
@@ -90,7 +91,7 @@ const Producto1= {
     stock:25
 }
 const Producto2= {
-    title: 'producto prueba',
+    title: 'Memorias RAM',
     description:'Este es un producto prueba',
     price:2100,
     thumbnail:'Sin imagen',
@@ -99,7 +100,7 @@ const Producto2= {
 }
 
 const Producto3= {
-    title: 'producto prueba',
+    title: 'Reloj',
     description:'Este es un producto prueba',
     price:900,
     thumbnail:'Sin imagen',
@@ -107,7 +108,7 @@ const Producto3= {
     stock:25
 }
 const Producto4= {
-    title: 'gloria',
+    title: 'HDD/SDD',
     description:'Este es un producto prueba',
     price:700,
     thumbnail:'Sin imagen',
@@ -115,7 +116,7 @@ const Producto4= {
     stock:25
 }
 const Producto5= {
-    title: 'exito',
+    title: 'Mother',
     description:'Este es un producto prueba',
     price:500,
     thumbnail:'Sin imagen',
@@ -123,7 +124,7 @@ const Producto5= {
     stock:25
 }
 const Producto6= {
-    title: 'rivadavia',
+    title: 'Ventilador',
     description:'Este es un producto prueba',
     price:400,
     thumbnail:'Sin imagen',
@@ -131,7 +132,7 @@ const Producto6= {
     stock:25
 }
 const Producto7= {
-    title: 'la caja',
+    title: 'teclado',
     description:'Este es un producto prueba',
     price:365,
     thumbnail:'Sin imagen',
@@ -139,7 +140,7 @@ const Producto7= {
     stock:25
 }
 const Producto8= {
-    title: 'san cristobal',
+    title: 'mouse',
     description:'Este es un producto prueba',
     price:245,
     thumbnail:'Sin imagen',
@@ -147,7 +148,7 @@ const Producto8= {
     stock:25
 }
 const Producto9= {
-    title: 'medife',
+    title: 'monitor',
     description:'Este es un producto prueba',
     price:2097,
     thumbnail:'Sin imagen',
@@ -155,7 +156,7 @@ const Producto9= {
     stock:25
 }
 const Producto10= {
-    title: 'salud',
+    title: 'auriculares',
     description:'Este es un producto prueba',
     price:208,
     thumbnail:'Sin imagen',
@@ -163,7 +164,7 @@ const Producto10= {
     stock:25
 }
 const Producto11= {
-    title: 'sancor',
+    title: 'procesadores',
     description:'Este es un producto prueba',
     price:22,
     thumbnail:'Sin imagen',
@@ -171,8 +172,8 @@ const Producto11= {
     stock:25
 }
 
-
-/*     async function test () { 
+/* 
+     async function test () { 
         const Producto =  new ProductManager('productos.json') 
         await Producto.addproduct(Producto1)
         await Producto.addproduct(Producto2)

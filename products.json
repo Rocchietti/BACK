@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "producto prueba",
+        "title": "Tarjeta de video",
         "description": "Este es un producto prueba",
         "price": 2030,
         "thumbnail": "Sin imagen",
@@ -10,7 +10,7 @@
     },
     {
         "id": 2,
-        "title": "producto prueba",
+        "title": "Memorias RAM",
         "description": "Este es un producto prueba",
         "price": 2100,
         "thumbnail": "Sin imagen",
@@ -19,7 +19,7 @@
     },
     {
         "id": 3,
-        "title": "producto prueba",
+        "title": "Reloj",
         "description": "Este es un producto prueba",
         "price": 900,
         "thumbnail": "Sin imagen",
@@ -28,16 +28,16 @@
     },
     {
         "id": 4,
-        "title": "Amanita",
-        "description": "Muscari",
-        "price": 2020,
-        "thumbnail": "sin imagen",
-        "code": "ljk22",
-        "stock": 123
+        "title": "HDD/SDD",
+        "description": "Este es un producto prueba",
+        "price": 700,
+        "thumbnail": "Sin imagen",
+        "code": "abc123",
+        "stock": 25
     },
     {
         "id": 5,
-        "title": "exito",
+        "title": "Mother",
         "description": "Este es un producto prueba",
         "price": 500,
         "thumbnail": "Sin imagen",
@@ -46,7 +46,7 @@
     },
     {
         "id": 6,
-        "title": "rivadavia",
+        "title": "Ventilador",
         "description": "Este es un producto prueba",
         "price": 400,
         "thumbnail": "Sin imagen",
@@ -55,7 +55,7 @@
     },
     {
         "id": 7,
-        "title": "la caja",
+        "title": "teclado",
         "description": "Este es un producto prueba",
         "price": 365,
         "thumbnail": "Sin imagen",
@@ -64,7 +64,7 @@
     },
     {
         "id": 8,
-        "title": "san cristobal",
+        "title": "mouse",
         "description": "Este es un producto prueba",
         "price": 245,
         "thumbnail": "Sin imagen",
@@ -73,7 +73,7 @@
     },
     {
         "id": 9,
-        "title": "medife",
+        "title": "monitor",
         "description": "Este es un producto prueba",
         "price": 2097,
         "thumbnail": "Sin imagen",
@@ -82,7 +82,7 @@
     },
     {
         "id": 10,
-        "title": "salud",
+        "title": "auriculares",
         "description": "Este es un producto prueba",
         "price": 208,
         "thumbnail": "Sin imagen",
@@ -91,7 +91,7 @@
     },
     {
         "id": 11,
-        "title": "sancor",
+        "title": "procesadores",
         "description": "Este es un producto prueba",
         "price": 22,
         "thumbnail": "Sin imagen",
@@ -100,11 +100,17 @@
     },
     {
         "id": 12,
-        "title": "Saludos desde GeeksforGeeks",
-        "description": "Empresa desafiada",
-        "price": 2020,
-        "code": "ljk22",
-        "stock": "245",
-        "thumbnail": "sin imagen"
+        "title": "Nylon",
+        "description": "poliamida sintética de la que se hacen filamentos elásticos y muy resistentes",
+        "code": "abc123",
+        "price": 900,
+        "status": true,
+        "stock": 25,
+        "category": "termoplastico",
+        "thumbnail": [
+            "https://media.istockphoto.com/id/1309217444/es/vector/mochila-con-conjunto-de-maquetas-de-cuerdas-ilustraci%C3%B3n-vectorial-bolsa-de-lona-blanca-gris.jpg?s=2048x2048&w=is&k=20&c=cLv1FogV_8FAYViputySmL4lBniRHbEUxTN0Cth1pI8=",
+            "https://media.istockphoto.com/id/1155963953/es/foto/bolsa-de-pl%C3%A1stico.jpg?s=2048x2048&w=is&k=20&c=jPHpvSugqGlNOyIhSvhEBLRiu1GrkUpm1oFndkU9eeU=",
+            "https://media.istockphoto.com/id/1171286065/es/foto/bolsas-de-transporte-pintor-rojo.jpg?s=2048x2048&w=is&k=20&c=xKVq5iSwe6OqJUSw-Mg76MnbW38gjvdYjx_RUwlJnLY="
+        ]
     }
 ]
