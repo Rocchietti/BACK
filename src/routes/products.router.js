@@ -1,9 +1,6 @@
 import { Router } from 'express';
 import { Producto } from '../ProductManager.js';
-import {promises} from 'fs';
 import { validacion } from '../middleware/validacionMiddleware.js';
-
-const path = 'carrito.json'
 
 const router = Router();
 router.get('/', async (req, res) => {
@@ -15,8 +12,8 @@ router.get('/', async (req, res) => {
     }
 });
 router.get('/:pid', async (req, res) => {
-    console.log(req.params);
     const { pid } = req.params
+    console.log(req.params);
     try {
         const idProducto = await Producto.getProductById(+pid)
         if (!idProducto) {

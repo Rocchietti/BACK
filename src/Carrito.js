@@ -1,10 +1,11 @@
-import { existsSync, promises } from 'fs'
-import { Producto } from './ProductManager';
+import { existsSync, promises } from 'fs';
+import { Producto } from './ProductManager.js';
 
-const path = 'carrito.json'
+const path = 'carrito.json';
 
 class Carrito {
-    constructor() { }
+    constructor() {
+    }
     async getCarrito() {
         try {
             if (existsSync(path)) {
@@ -18,14 +19,14 @@ class Carrito {
             console.log(error.message);
         }
     }
-    async addCarro() {
+    async writeCart() {
         try {
-            const carrito = await this.getCarrito();
-            let id = !carrito.length ? id = 1 : id = carrito[carrito.length - 1].id + 1
-            const newCart = {id, productos:[]}
-            carrito.push(newCart);
-            await promises.writeFile(path, JSON.stringify(carrito))
-            return carrito
+            const carro = await this.getCarrito();
+            let id = !carro.length ? id = 1 : id = carro[carro.length - 1].id + 1
+            const newCart = {id, products:[]}
+            carro.push(newCart);
+            await promises.writeFile(path, JSON.stringify(carro))
+            return carro
         } catch (error) {
             return console.error();
         }
@@ -48,14 +49,16 @@ class Carrito {
     if (!producto) {
         throw new Error("There is no product with this id");
 }
-    const productIndex = cart.productos.findIndex(
+    const productIndex = cart.products.findIndex(
         (p) => p.product === idProducto
 );
     if (productIndex === -1) {
     const newProduct = { product: idProducto, quantity: 1 };
-    cart.productos.push(newProduct);
+    cart.products.push(newProduct);
     } else {
-    cart.productos[productIndex].quantity++;
+    cart.products[productIndex].quantity++;
 }
 }
 }
+
+export const Carro = new Carrito ()
