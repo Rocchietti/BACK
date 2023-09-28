@@ -41,9 +41,10 @@ class Carrito {
         }
     }
     async addProductToCart (idCart, idProducto){
-    const cart = await this.getCartbyId(idCart)
+        try {
+            const cart = await this.getCartById(idCart)
     if(!cart){
-        throw new Error(error.message)
+        throw new Error("There is not cart with this id")
     }
     const producto = await Producto.getProductById(idProducto);
     if (!producto) {
@@ -57,6 +58,11 @@ class Carrito {
     cart.products.push(newProduct);
     } else {
     cart.products[productIndex].quantity++;
+}
+await promises.writeFile(path, JSON.stringify(cart, null, 2))
+}
+catch (error) {
+    console.error(error.message);
 }
 }
 }

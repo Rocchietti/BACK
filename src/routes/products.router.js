@@ -21,7 +21,7 @@ router.get('/:pid', async (req, res) => {
         }
         res.status(200).json({ message: 'Producto por ID', idProducto })
     } catch (error) {
-
+        return res.status(500).json(message.error)
     }
 });
 router.post('/', validacion, async (req, res) => {
@@ -54,7 +54,7 @@ router.put('/:pid', async (req, res) => {
         }
         res.status(200).json({ message: 'Producto actualizado', response })
     } catch (error) {
-
+        res.status(500).json(console.error('ha ocurrido un error'))
     }
 });
 

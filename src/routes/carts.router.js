@@ -1,8 +1,16 @@
 import { Router, json } from 'express';
 import { Carro } from '../Carrito.js';
+import { Producto } from '../ProductManager.js';
 
 const router = Router(); 
 
+/* router.get('/', async (req, res) => {
+    try {
+        const productToCart = await Producto.getProductById
+    } catch (error) {
+        return res.status(404).json({message: 'No se pudo conectar con el servidor'})
+    }
+}) */ //PRUEBA
 router.post('/', async(req,res)=> {
     try {
         const update = await Carro.writeCart()
