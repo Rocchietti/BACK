@@ -4,7 +4,7 @@
         "title": "Tarjeta de video",
         "description": "Este es un producto prueba",
         "price": 2030,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://i.blogs.es/9db78d/61syyrsgd5s._ac_sl1000_/450_1000.webp",
         "code": "abc123",
         "stock": 25
     },
@@ -13,7 +13,7 @@
         "title": "Memorias RAM",
         "description": "Este es un producto prueba",
         "price": 2100,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_607255-MLU69742212545_052023-F.webp",
         "code": "abc123",
         "stock": 25
     },
@@ -22,7 +22,7 @@
         "title": "Reloj de Pared",
         "description": "Minimalista",
         "price": 1230,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://cuadrosdecorativos.com.ar/wp-content/uploads/2022/09/Reloj-De-Pared-Estacion-de-Tren.png",
         "code": "abc123",
         "stock": 10
     },
@@ -31,7 +31,7 @@
         "title": "HDD/SDD",
         "description": "Este es un producto prueba",
         "price": 700,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://www.jetcomputer.net/blog/wp-content/uploads/2021/04/Disco-duro-HDD-vs-SSD.png",
         "code": "abc123",
         "stock": 25
     },
@@ -40,7 +40,7 @@
         "title": "Mother",
         "description": "Este es un producto prueba",
         "price": 500,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://www.asus.com/media/global/gallery/twnjajagvq8nz2ib_setting_xxx_0_90_end_800.png",
         "code": "abc123",
         "stock": 25
     },
@@ -49,7 +49,7 @@
         "title": "Ventilador",
         "description": "Este es un producto prueba",
         "price": 400,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://s3-sa-east-1.amazonaws.com/saasargentina/AGt7fQdqWtvk7x48MHjM/imagen",
         "code": "abc123",
         "stock": 25
     },
@@ -58,7 +58,7 @@
         "title": "teclado",
         "description": "Este es un producto prueba",
         "price": 365,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_680225-MLA43035593873_082020-O.webp",
         "code": "abc123",
         "stock": 25
     },
@@ -67,7 +67,7 @@
         "title": "mouse",
         "description": "Este es un producto prueba",
         "price": 245,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://arwan.com.ar/wp-content/uploads/2023/08/nb_MOUSE-GAMER-RAZER-VIPER-ULTIMATE-WIRELESS-CHARGING-DOCK_ver_578aaf9bc91c51570b12c8c4919864d4.jpeg",
         "code": "abc123",
         "stock": 25
     },
@@ -76,7 +76,7 @@
         "title": "monitor",
         "description": "Este es un producto prueba",
         "price": 2097,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://image.benq.com/is/image/benqco/01_xl2746k-front?$ResponsivePreset$&fmt=png-alpha",
         "code": "abc123",
         "stock": 25
     },
@@ -85,7 +85,7 @@
         "title": "auriculares",
         "description": "Este es un producto prueba",
         "price": 208,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_635831-MLA49116466416_022022-O.webp",
         "code": "abc123",
         "stock": 25
     },
@@ -94,7 +94,7 @@
         "title": "procesadores",
         "description": "Este es un producto prueba",
         "price": 22,
-        "thumbnail": "Sin imagen",
+        "thumbnail": "https://mla-s1-p.mlstatic.com/952854-MLA54691349513_032023-F.jpg",
         "code": "abc123",
         "stock": 25
     },
