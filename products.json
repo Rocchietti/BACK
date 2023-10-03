@@ -55,7 +55,7 @@
     },
     {
         "id": 7,
-        "title": "teclado",
+        "title": "Teclado",
         "description": "Este es un producto prueba",
         "price": 365,
         "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_680225-MLA43035593873_082020-O.webp",
@@ -64,7 +64,7 @@
     },
     {
         "id": 8,
-        "title": "mouse",
+        "title": "Mouse",
         "description": "Este es un producto prueba",
         "price": 245,
         "thumbnail": "https://arwan.com.ar/wp-content/uploads/2023/08/nb_MOUSE-GAMER-RAZER-VIPER-ULTIMATE-WIRELESS-CHARGING-DOCK_ver_578aaf9bc91c51570b12c8c4919864d4.jpeg",
@@ -73,7 +73,7 @@
     },
     {
         "id": 9,
-        "title": "monitor",
+        "title": "Monitor",
         "description": "Este es un producto prueba",
         "price": 2097,
         "thumbnail": "https://image.benq.com/is/image/benqco/01_xl2746k-front?$ResponsivePreset$&fmt=png-alpha",
@@ -82,7 +82,7 @@
     },
     {
         "id": 10,
-        "title": "auriculares",
+        "title": "Auriculares",
         "description": "Este es un producto prueba",
         "price": 208,
         "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_635831-MLA49116466416_022022-O.webp",
@@ -91,27 +91,12 @@
     },
     {
         "id": 11,
-        "title": "procesadores",
+        "title": "Procesadores",
         "description": "Este es un producto prueba",
         "price": 22,
         "thumbnail": "https://mla-s1-p.mlstatic.com/952854-MLA54691349513_032023-F.jpg",
         "code": "abc123",
         "stock": 25
-    },
-    {
-        "id": 12,
-        "title": "Nylon",
-        "description": "poliamida sintética de la que se hacen filamentos elásticos y muy resistentes",
-        "code": "abc123",
-        "price": 900,
-        "status": true,
-        "stock": 25,
-        "category": "termoplastico",
-        "thumbnail": [
-            "https://media.istockphoto.com/id/1309217444/es/vector/mochila-con-conjunto-de-maquetas-de-cuerdas-ilustraci%C3%B3n-vectorial-bolsa-de-lona-blanca-gris.jpg?s=2048x2048&w=is&k=20&c=cLv1FogV_8FAYViputySmL4lBniRHbEUxTN0Cth1pI8=",
-            "https://media.istockphoto.com/id/1155963953/es/foto/bolsa-de-pl%C3%A1stico.jpg?s=2048x2048&w=is&k=20&c=jPHpvSugqGlNOyIhSvhEBLRiu1GrkUpm1oFndkU9eeU=",
-            "https://media.istockphoto.com/id/1171286065/es/foto/bolsas-de-transporte-pintor-rojo.jpg?s=2048x2048&w=is&k=20&c=xKVq5iSwe6OqJUSw-Mg76MnbW38gjvdYjx_RUwlJnLY="
-        ]
     }
 ]
 
