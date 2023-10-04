@@ -4,13 +4,12 @@ const path = 'products.json'
 class ProductManager {
     constructor () {
     }
-    async getProduct(queryLimit){
-        const {limit} = queryLimit
+    async getProduct(){
         try {
             if(existsSync(path)){
                 const productsFile = await promises.readFile(path,'utf-8')
                 const productsData = JSON.parse(productsFile)
-                return limit ? productsData.slice(0, +limit) : productsData
+                return productsData
             }else {
                 return []
             }

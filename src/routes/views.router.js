@@ -12,10 +12,7 @@ res.render("home", {
 }
 )
 router.get('/realtimeproducts', async (req,res) => {
-    const productos = await Producto.getProduct(req.query)
-    res.render('realTimeProducts', {
-        
-    })
+    res.render('realTimeProducts')
 })
 
 
