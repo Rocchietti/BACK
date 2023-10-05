@@ -38,15 +38,14 @@ console.log('Cliente desconectado');
     socketServer.emit('products', products)
 
     socket.on('addProduct', async (producto) => {
-        const product= await Producto.addProduct(producto);
-        const productsActualizados = await Producto.getProduct(product);
+        const product= await Producto.addproduct(producto);
+        const productsActualizados = await Producto.getProduct();
         socketServer.emit('productUpdate', productsActualizados)
-        console.log(products);
-        console.log(product);
+        console.log(productsActualizados);
+        console.log(producto);
     })
-    socket.on("deleteProduct", async (productId) => {
-        const products = await productManager.getProduct();
-        const producto = await productManager.deleteProductById(+productId);
-        const productosActualizados = await productManager.getProduct(producto);
-        socketServer.emit("productDelete", productosActualizados);
+    socket.on('deleteProduct', async (productId) => {
+            const producto = await Producto.deleteProduct(+productId);
+            const productosActualizados = await Producto.getProduct();
+            socketServer.emit('productDelete', productosActualizados);
     })})

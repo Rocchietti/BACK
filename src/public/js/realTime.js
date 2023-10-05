@@ -1,6 +1,7 @@
+
 const socketClient = io();
 
-const form = document.getElementById("form");
+const formAdd = document.getElementById("formAdd");
 const addTitle = document.getElementById("title");
 const addDescription= document.getElementById("description");   
 const addPrice= document.getElementById("price");
@@ -9,15 +10,12 @@ const addStock= document.getElementById("stock");
 const addCategory= document.getElementById("categoria");
 const formDelete = document.getElementById("formDelete");
 const IdDelete = document.getElementById("idDelete");
-const TitleDelete = document.getElementById("titleDelete");
+const RealTime = document.getElementById("divRealTimeProduct")
 
-socketClient.on("products", (products) => {
-    listaDeProductosActualizados(products);
-  });
-const listaDeProductosActualizados = (products) => {
-    let divRealTimeProduct = document.getElementById("divRealTimeProduct");
+const listaDeProductosActualizados = (producto) => {
+    let divRealTimeProduct = RealTime;
     let html = "";
-    products.forEach((product) => {
+    producto.forEach((product) => {
       html += ` 
         <p>id: ${product.id}</p>
         <h3>titulo: ${product.title}</h3>
@@ -28,29 +26,34 @@ const listaDeProductosActualizados = (products) => {
         <hr>
         `;
     divRealTimeProduct.innerHTML = html;
+})};
+
+socketClient.on("products", (products) => {
+  listaDeProductosActualizados(products);
 });
-};
-  form.onsubmit = (e)=>{
+
+  formAdd.onsubmit = (e) => {
     e.preventDefault();
-    const title = addTitle.value;
-    const description = addDescription.value;
-    const price = addPrice.value;
-    const code = addCode.value;
-    const stock = addStock.value;
-    const category = addCategory.value;
-
-    socketClient.emit("addProduct", {title,description,price,code,stock,category})
-
-    socketClient.on("productUpdate", (productosActualizados) => {
-        listaDeProductosActualizados(productosActualizados);
-      });
+    const product = {
+    title:addTitle.value,
+    description: addDescription.value,
+    price: addPrice.value,
+    code:addCode.value,
+    stock:addStock.value,
+    category:addCategory.value,
+  }
+    socketClient.emit("addProduct", product)
 }
-formDelete.onsubmit = (e)=>{
-    e.preventDefault();
+socketClient.on("productUpdate", (productosAds) => {
+  listaDeProductosActualizados(productosAds)
+ })
+formDelete.onsubmit = (event)=>{
+    event.preventDefault();
     const idDelete = IdDelete.value;
     socketClient.emit("deleteProduct", idDelete);
   };
   socketClient.on("productDelete", (products) => {
-    listaDeProductosActualizados(products);
+    listaDeProductosActualizados(products)
   });
+
   
