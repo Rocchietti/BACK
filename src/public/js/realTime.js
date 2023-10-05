@@ -1,4 +1,3 @@
-
 const socketClient = io();
 
 const formAdd = document.getElementById("formAdd");
@@ -7,7 +6,7 @@ const addDescription= document.getElementById("description");
 const addPrice= document.getElementById("price");
 const addCode= document.getElementById("code");
 const addStock= document.getElementById("stock");
-const addCategory= document.getElementById("categoria");
+const addCategory= document.getElementById("category");
 const formDelete = document.getElementById("formDelete");
 const IdDelete = document.getElementById("idDelete");
 const RealTime = document.getElementById("divRealTimeProduct")
@@ -44,11 +43,13 @@ socketClient.on("products", (products) => {
   }
     socketClient.emit("addProduct", product)
 }
+
 socketClient.on("productUpdate", (productosAds) => {
   listaDeProductosActualizados(productosAds)
  })
-formDelete.onsubmit = (event)=>{
-    event.preventDefault();
+
+formDelete.onsubmit = (e)=>{
+    e.preventDefault();
     const idDelete = IdDelete.value;
     socketClient.emit("deleteProduct", idDelete);
   };
