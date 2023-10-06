@@ -53,8 +53,9 @@ formDelete.onsubmit = (e)=>{
     const idDelete = IdDelete.value;
     socketClient.emit("deleteProduct", idDelete);
   };
+
   socketClient.on("productDelete", (products) => {
-    listaDeProductosActualizados(products)
+    listaDeProductosActualizados({products})
   });
 
   
