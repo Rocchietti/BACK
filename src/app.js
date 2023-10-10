@@ -7,6 +7,8 @@ import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import { Producto } from './ProductManager.js';
 
+const PORT = 8080;
+
 
 const app = express()
 app.use(express.urlencoded({ extended:true }));
@@ -22,26 +24,39 @@ app.use("/api/productos", productsRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/views", viewsRouter);
 
-const httpServer = app.listen(8080, () => {
-    console.log('Escuchando al puerto 8080');
+
+const httpServer = app.listen(PORT, () => {
+    console.log(`Escuchando al puerto ${PORT}`);
 })
 
 const socketServer = new Server (httpServer) 
 
 socketServer.on('connection', async (socket) => {
-/*      console.log('socket', socket); */
     console.log('cliente conectado');
-/*     socket.on('disconnect', () => {
-console.log('Cliente desconectado');
-    }) */
+    //CHAT
+    const messages = []
+    socket.on("newUser", (usuario) => {
+        socket.broadcast.emit("userConnect", usuario )
+    })
+    socket.on("message", (info) => {
+        messages.push(info)
+       socketServer.emit("chat", messages)
+    })
+
+    //PRODUCTOS
+
     const products= await Producto.getProduct()
     socketServer.emit('products', products)
 
     socket.on('addProduct', async (producto) => {
         const product= await Producto.addproduct(producto);
-        socketServer.emit('productUpdate', product)
+        const update = await Producto.updateProduct(product)
+        socketServer.emit('productUpdate', update)
     })
     socket.on('deleteProduct', async (productId) => {
             const producto = await Producto.deleteProduct(+productId);
             socketServer.emit('productDelete', producto);
+    socket.on('disconnect', () => {
+    console.log('Cliente desconectado');
+})
     })})
