@@ -1,4 +1,4 @@
-const socketClient = io();
+/* const socketClient = io();
 const form = document.getElementById("formChat")
 const message = document.getElementById("message")
 const nombre = document.getElementById('name');
@@ -47,5 +47,5 @@ Swal.fire({
     infoMessage.innerText = ""
     socketClient.emit("message", infoMessage)
  }
-
+ */
 

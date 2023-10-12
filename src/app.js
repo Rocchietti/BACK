@@ -34,14 +34,14 @@ const socketServer = new Server (httpServer)
 socketServer.on('connection', async (socket) => {
     console.log('cliente conectado');
     //CHAT
-    const messages = []
+/*     const messages = []
     socket.on("newUser", (usuario) => {
         socket.broadcast.emit("userConnect", usuario )
     })
     socket.on("message", (info) => {
         messages.push(info)
        socketServer.emit("chat", messages)
-    })
+    }) */
 
     //PRODUCTOS
 
