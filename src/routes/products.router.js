@@ -1,21 +1,22 @@
 import { Router } from 'express';
 import { Producto } from '../ProductManager.js';
 import { validacion } from '../middleware/validacionMiddleware.js';
+import { ProduManager } from '../manager/productmana.js'
 
 const router = Router();
-router.get('/', async (req, res) => {
+/* router.get('/', async (req, res) => {
     try {
         const products = await Producto.getProduct(req.query)
         res.status(200).json({ message: 'lista de productos', products })
     } catch (error) {
         res.status(500).json({ message: 'Error Server' })
     }
-});
+}); */
 router.get('/:pid', async (req, res) => {
     const { pid } = req.params
     console.log(req.params);
     try {
-        const idProducto = await Producto.getProductById(+pid)
+        const idProducto = await ProduManager.findById(+pid)
         if (!idProducto) {
             res.status(404).json({ message: 'Product not found with the id provided' })
         }
@@ -24,7 +25,7 @@ router.get('/:pid', async (req, res) => {
         return res.status(500).json(message.error)
     }
 });
-router.post('/', validacion, async (req, res) => {
+/* router.post('/', validacion, async (req, res) => {
     console.log(req.body);
     try {
         const update = await Producto.addproduct(req.body)
@@ -32,11 +33,11 @@ router.post('/', validacion, async (req, res) => {
     } catch (error) {
         return res.status(500).json('Ha ocurrido un error')
     }
-});
+}); */
 router.delete('/:pid', async (req, res) => {
     const { pid } = req.params
     try {
-        const response = await Producto.deleteProduct(+pid)
+        const response = await ProduManager.deleteOne(pid)
         if (!response) {
             res.status(404).json({ message: 'Product not found with the id provided' })
         }
@@ -45,7 +46,7 @@ router.delete('/:pid', async (req, res) => {
         app.status(500).json({ message: 'No se pudo comunicar con el servidor' })
     }
 });
-router.put('/:pid', async (req, res) => {
+/* router.put('/:pid', async (req, res) => {
     const { pid } = req.params;
     try {
         const response = await Producto.updateProduct(+pid, req.body)
@@ -56,6 +57,23 @@ router.put('/:pid', async (req, res) => {
     } catch (error) {
         res.status(500).json(console.error('ha ocurrido un error'))
     }
+}); */
+router.get('/', async (req, res) => {
+    try {
+        const products = await ProduManager.findAll()
+        res.status(200).json({ message: 'lista de productos', products })
+    } catch (error) {
+        res.status(500).json({ message: 'Error Server' })
+    }
 });
-
+router.post('/', async (req,res) => {
+    try {
+        const createdProduct = await ProduManager.createOne(req.body);
+        res.status(200).json({
+        message : 'Product created',  product: createdProduct
+        })
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
 export default router;
