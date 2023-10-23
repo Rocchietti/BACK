@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
     title:{
@@ -20,4 +20,4 @@ const productSchema = new mongoose.Schema({
 });  
 
 
-export const productsModel = mongoose.model('Productos', productSchema)
+export const productsModel = mongoose.model('productos', productSchema)
