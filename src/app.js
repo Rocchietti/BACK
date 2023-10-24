@@ -5,7 +5,7 @@ import viewsRouter from './routes/views.router.js'
 import {__dirname } from './utils.js'
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
-import { Producto } from './ProductManager.js';
+import { Producto } from './dao/ProductManager.js';
 //db
 import './db/configDB.js'
 
