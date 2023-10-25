@@ -6,6 +6,7 @@ import {__dirname } from './utils.js'
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import { Producto } from './dao/ProductManager.js';
+import { chatMana } from './dao/manager/chatmana.js';
 //db
 import './db/configDB.js'
 
@@ -35,15 +36,16 @@ const socketServer = new Server (httpServer)
 
 socketServer.on('connection', async (socket) => {
     console.log('cliente conectado');
-    //CHAT
-/*     const messages = []
+//CHAT
+    const messages = []
     socket.on("newUser", (usuario) => {
         socket.broadcast.emit("userConnect", usuario )
     })
-    socket.on("message", (info) => {
+    socket.on("message", async (info) => {
         messages.push(info)
+        const message = await chatMana.createOne(info)
        socketServer.emit("chat", messages)
-    }) */
+    }) 
 
     //PRODUCTOS
 
