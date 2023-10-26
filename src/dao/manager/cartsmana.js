@@ -1,4 +1,4 @@
-import { cartModel } from "../models/carts.model";
+import { cartModel } from "../models/carts.model.js";
 
 class CartManager {
         async findAll() {
@@ -27,4 +27,4 @@ class CartManager {
 
 
 
-export const CartManager = new CartManager()
+export const CartMana = new CartManager()
