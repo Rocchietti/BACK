@@ -1,21 +1,19 @@
 import { Router } from 'express';
-import { Producto } from '../dao/ProductManager.js';
-import { validacion } from '../middleware/validacionMiddleware.js';
 import { ProduManager } from '../dao/manager/productmana.js';
 
 const router = Router();
 
-router.get('/:pid', async (req, res) => {
-    const { pid } = req.params
+router.get('/:code', async (req, res) => {
+    const { code } = req.params
     console.log(req.params);
     try {
-        const idProducto = await ProduManager.findById(+pid)
+        const idProducto = await ProduManager.findByCode(code)
         if (!idProducto) {
             res.status(404).json({ message: 'Product not found with the id provided' })
         }
         res.status(200).json({ message: 'Producto por ID', idProducto })
     } catch (error) {
-        return res.status(500).json(message.error)
+        return res.status(500).json({message: error})
     }
 });
 

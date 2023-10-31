@@ -6,7 +6,11 @@ class ProductManager {
             return response 
         }
         async findById(id) {
-            const response = await productsModel.findById(id);
+            const response = await productsModel.findById(id).explain('executionStats');
+            return response
+        }
+        async findByCode(code){
+            const response = await productsModel.findOne({code}).explain('executionStats');
             return response
         }
         async createOne(obj) {

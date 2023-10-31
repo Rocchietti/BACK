@@ -1,30 +1,27 @@
 import { cartModel } from "../models/carts.model.js";
 
 class CartManager {
-        async findAll() {
-            const response = await cartModel.find().lean()
+        async createCart() {
+            const newCart = {productos: [] };
+            const response = await cartModel.create(newCart)
             return response 
         }
-        async findById(id) {
-            const response = await cartModel.findById(id);
-            return response
+        async findCartById(idCart) {
+            const response = await cartModel
+            .findById(idCart)
+            .populate("products.product", ["name", "price"]);
+          return response;
         }
-        async createOne(obj) {
-            const response = await cartModel.create(obj)
-            return response
+        async addProductToCart(idCart, idProduct) {
+            const cart = await cartModel.findById(idCart)
+            const productIndex = cart.productos.findIndex((p)=>p.product.equals(idProduct))
+            if(productIndex === -1) {
+                cart.productos.push({product:idProduct,quantity:1})
+            }else {
+                cart.productos[productIndex].quantity++;
+            }
+            return cart.save()
         }
-        async updateOne(id, obj) {
-            const response = await cartModel.updateOne({_id:id}, obj)   
-            return response
-        }
-
-        async deleteOne(id){
-            const response = await cartModel.findOneAndDelete({_id:id})
-            return response
-        }
-
 }
 
-
-
-export const CartMana = new CartManager()
+export const cartManager = new CartManager()
