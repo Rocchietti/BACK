@@ -23,12 +23,26 @@ router.post('/', async(req,res)=> {
 });
 router.put('/:idCart', async (req, res) => {
     const {idCart} = req.params
+    console.log(req.body);
     try {
-        const response = await cartManager.UpdateCart(idCart)
+        const response = await cartManager.UpdateCart(idCart, req.body)
+        res.status(200).json({message: `carrito con arreglo de productos: ${response}`})
     } catch (error) {
-        
+        res.status(500).json({message: `server error ${error}`})
     }
 } )
+router.put('/:idCart/products/:idProducto', async (req,res) => {
+    const {idCart, idProducto} = req.params
+    console.log(req.body);
+   /*  const quantity = req.body */
+    try {
+        const response = await cartManager.updateQuantity(idCart,idProducto, req.body)
+        res.status(200).json({message: `cantidad de productos actualizada with success ${response}`})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message: error });
+    }
+})
 router.post('/:idCart/product/:idProducto', async (req,res) => {
     const {idCart, idProducto} = req.params;
     try {
@@ -51,6 +65,15 @@ router.delete('/:idCart/products/:idProduct', async (req,res) => {
         message: error
         })
     }
+router.delete('/idCart', async (req,res) => {
+    const {idCart} = req.params
+    try {
+        const response = await cartManager.deleteCart(idCart)
+        res.status(200).json({message: `Se eliminó el cart ${response} with success`})
+    } catch (error) {
+        res.status(500).json({message:error})
+    }
+})
 })
 
 

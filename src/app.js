@@ -46,9 +46,13 @@ socketServer.on('connection', async (socket) => {
         const message = await chatMana.createOne(info)
        socketServer.emit("chat", messages)
     }) 
-
+    socket.on("showProducts", async() => {
+        const products = await productsManager.findAll({limit:10, page:1, sort:{}, query:{} })
+        socketServer.emit("sendProducts", products);
+      });
+})
     //PRODUCTOS
-
+/* 
     const products= await Producto.getProduct()
     socketServer.emit('products', products)
 
@@ -63,4 +67,4 @@ socketServer.on('connection', async (socket) => {
     socket.on('disconnect', () => {
     console.log('Cliente desconectado');
 })
-    })})
+    })}) */
