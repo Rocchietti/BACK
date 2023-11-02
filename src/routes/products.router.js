@@ -43,7 +43,13 @@ router.put('/:pid', async (req, res) => {
 });
 router.get('/', async (req, res) => {
     try {
-        const products = await ProduManager.findAll()
+        const {limit, page, sort, query} = req.query;
+        const products = await ProduManager.findAll({
+            page: parseInt(page, 10),
+            limit: parseInt(limit, 10),
+            sort,
+            query
+        })
         res.status(200).json({ message: 'lista de productos', products })
     } catch (error) {
         res.status(500).json({ message: 'Error Server' })
