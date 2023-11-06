@@ -58,8 +58,8 @@ Swal.fire({
  formChat.onsubmit = (e) => {
      e.preventDefault();
      const objMessage = {
-         user:user.value,
-         message:message.value
+         user: user.value,
+         message: message.value
      }
      socketClient.emit("newMessage",objMessage);
  };

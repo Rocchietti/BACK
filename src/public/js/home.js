@@ -8,8 +8,8 @@ formProducts.onsubmit = (e) => {
     socketClient.emit("showProducts");
 };
 
-socketClient.on("sendProducts", (products) => {
-    const arrayProducts = products.map(i=>{
+socketClient.on("sendProducts", (productos) => {
+    const arrayProducts = productos.map(i=>{
         const product = `<div>${i.title}</div>
         <div>${i.description}</div>
         <div>${i.price}</div>

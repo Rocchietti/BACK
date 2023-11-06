@@ -5,7 +5,7 @@ import viewsRouter from './routes/views.router.js'
 import {__dirname } from './utils.js'
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
-import { Producto } from './dao/ProductManager.js';
+import { Producto } from './dao/FS/ProductManager.js';
 import { cartManager } from './dao/manager/cartsmana.js';
 import { ProduManager } from './dao/manager/productmana.js';
 import { chatMana } from './dao/manager/chatmana.js';
@@ -39,7 +39,6 @@ const socketServer = new Server (httpServer)
 socketServer.on('connection', async (socket) => {
     console.log('cliente conectado');
 //CHAT
-    const messages = []
     socket.on("newUser", (usuario) => {
         socket.broadcast.emit("userConnect", usuario )
     })

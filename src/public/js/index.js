@@ -13,4 +13,6 @@ form.onsubmit = (e) => {
 
 socketClient.on("priceUpdated", (price) => {
   priceP.innerText = price[0].title;
-});
+}); 
+
+

@@ -23,7 +23,7 @@ class CartManager {
         }
         async deleteProductToCart(idCart, idProduct){
             const cart = await cartModel.findById(idCart)
-            const productIndex = cart.products.findIndex((p)=>p.product.equals(idProduct))
+            const productIndex = cart.products.findIndex((p)=>p.product._id.equals(idProduct))
             if(productIndex === 1){
                 const dlt = cart.products.filter(product => product != productIndex)
                 return dlt
@@ -33,16 +33,23 @@ class CartManager {
             return cart.save()
         }
         async UpdateCart(idCart, productNew) {
-            const cart = await cartModel.findById(idCart)
-            cart.products = productNew
-            return cart.save();
+            const cartById = await cartModel.findById(idCart);
+
+            const newProduct = productNew;
+    
+            console.log(cartById.products);
+
+            cartById.products = newProduct;
+    
+            await cartById.save()
+    
+            return cartById
         }
         async deleteCart(idCart){
-            const cart = cartModel.findById(idCart);
+            const cart = await cartModel.deleteOne({_id: idCart});
             if(!cart){
                 return "cart does not exist"
             }
-            cart.products = [];
             return cart.save()
         }
         async updateQuantity(idCart, idProduct, quantity) {

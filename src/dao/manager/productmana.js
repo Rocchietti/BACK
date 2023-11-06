@@ -15,27 +15,21 @@ class ProductManager {
                 lean: true,
             }
             const response = await productsModel.paginate(query, options);
-            if(!response.docs.length){
-                console.log('Not products avaible');
-            }
-            const info = {
-                status: response.status,
-                payload: response.docs,
+            return {
+                status:"success",
+                payload: response,
                 totalPages: response.totalPages,
-                nextPage: response.hasNextPage,
-                prevPage: response.hasPrevPage,
-                prevLink: response.hasPrevPage ? `http://localhost:8080/api/productos?page=${response.prevPage} ` : null,
-                nextLink: response.hasNextPage ? `http://localhost:8080/api/productos?page=${response.nextPage} ` : null
-            }
-            return {response, info}
-
+                prevPage: response.prevPage,
+                nextPage: response.nextPage,
+                page: page,
+                hasPrevPage: response.hasPrevPage,
+                hasNextPage: response.hasNextPage,
+                prevLink: response.hasPrevPage? `http://localhost:8080/api/products?page=${response.prevPage}` : null,
+                nextLink: response.hasNextPage? `http://localhost:8080/api/products?page=${response.nextPage}` : null
+              };
         }
         async findById(id) {
-            const response = await productsModel.findById(id).explain('executionStats');
-            return response
-        }
-        async findByCode(code){
-            const response = await productsModel.findOne({code}).explain('executionStats');
+            const response = await productsModel.findById(id);
             return response
         }
         async createOne(obj) {

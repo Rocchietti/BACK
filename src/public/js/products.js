@@ -14,7 +14,7 @@ socketClient.on("sendProducts", (products) => {
         <div>${p.description}</div>
         <div>${p.price}</div>
         <div>${p.stock}</div>
-        <button>Agregar al Carrito</button>
+        <button> Agregar al Carrito </button>
         <br>`
         return product
     }).join(" ")
