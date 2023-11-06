@@ -6,6 +6,8 @@ import {__dirname } from './utils.js'
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import { Producto } from './dao/ProductManager.js';
+import { cartManager } from './dao/manager/cartsmana.js';
+import { ProduManager } from './dao/manager/productmana.js';
 import { chatMana } from './dao/manager/chatmana.js';
 //db
 import './db/configDB.js'
@@ -42,12 +44,12 @@ socketServer.on('connection', async (socket) => {
         socket.broadcast.emit("userConnect", usuario )
     })
     socket.on("message", async (info) => {
-        messages.push(info)
-        const message = await chatMana.createOne(info)
-       socketServer.emit("chat", messages)
+       await chatMana.createOne(info)
+        const message = await chatMana.findAll()
+       socketServer.emit("sendMessage", message)
     }) 
     socket.on("showProducts", async() => {
-        const products = await productsManager.findAll({limit:10, page:1, sort:{}, query:{} })
+        const products = await ProduManager.findAll({limit:10, page:1, sort:{}, query:{} })
         socketServer.emit("sendProducts", products);
       });
 })

@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { Producto } from "../dao/ProductManager.js";
 import { ProduManager } from "../dao/manager/productmana.js";
+import { cartManager } from "../dao/manager/cartsmana.js";
 
 const router = Router ();
 
@@ -29,7 +30,7 @@ router.get("/products", async (req, res) => {
   router.get("/carts/:idCart", async(req,res)=>{
     try {
       const {idCart} = req.params
-      const cart = await cartsManager.findCartById(idCart)
+      const cart = await cartManager.findCartById(idCart)
       const products = cart.products
       res.render("cart",{products})
       console.log(products)
