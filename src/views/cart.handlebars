@@ -1,12 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-</head>
-<body>
-    <div id="cart-view">{{products}}</div>
+<h2>CART CONTENT</h2>
 
-</body>
-</html>
+{{#if products.length}}
+    <div class="product-cards">
+        {{#each products}}
+        <div class="product-card">
+            <h4>TITLE: {{product.title}}</h4>
+            <p>DESCRIPTION: {{product.description}}</p>
+            <img src="{{product.thumbail}}" alt="{{product.title}}">
+            <div class="botonesQuantity">
+
+                <button class="add-to-cart-btn">-</button>
+
+                <p> QUANTITY: {{quantity}}</p>
+
+                <button class="add-to-cart-btn">+</button>
+
+            </div>
+            
+            <p>CATEGORY: {{product.category}}</p>
+            <button class="add-to-cart-btn" data-product-id="{{product._id}}">Remove to Cart</button>
+        </div>
+        {{/each}}
+    </div>
+
+{{else}}
+    <p>No products available.</p>
+{{/if}}

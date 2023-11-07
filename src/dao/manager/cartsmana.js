@@ -7,7 +7,7 @@ class CartManager {
             return response 
         }
         async findCartById(idCart) {
-            const response = await cartModel.findById(idCart).populate('products.product', ["title", "description", "price", "code"]);
+            const response = await cartModel.findById(idCart).populate({path:'products.product', model: 'Products', select: ["title", "description", "price", "code"]});
             console.log(response);
             return response
         }

@@ -42,30 +42,38 @@ socketServer.on('connection', async (socket) => {
     socket.on("newUser", (usuario) => {
         socket.broadcast.emit("userConnect", usuario )
     })
-    socket.on("message", async (info) => {
-       await chatMana.createOne(info)
-        const message = await chatMana.findAll()
-       socketServer.emit("sendMessage", message)
-    }) 
-    socket.on("showProducts", async() => {
-        const products = await ProduManager.findAll({limit:10, page:1, sort:{}, query:{} })
-        socketServer.emit("sendProducts", products);
-      });
+    socket.on("message", async (infoMessage) => {
+        await chatMana.createOne(infoMessage);
+        const allMessages = await chatMana.findAll();
+        socketServer.emit("chat", allMessages);
+    });
+
+    try {
+        const productosActualizados = await ProduManager.findAll(objeto);
+        console.log(productosActualizados);
+        socketServer.emit('productosActualizados', productosActualizados);
+
+        socket.on('agregado', async (nuevoProducto) => {
+            try {
+                const products = await ProduManager.createOne(nuevoProducto);
+                const productosActualizados = await ProduManager.findAll();
+                socketServer.emit('productosActualizados', productosActualizados);
+            } catch (error) {
+                console.error('Error al agregar el producto:', error);
+            }
+        });
+
+        socket.on('eliminar', async (id) => {
+            try {
+                const products = await ProduManager.deleteOne(id);
+                const productosActualizados = await ProduManager.findAll();
+                socketServer.emit('productosActualizados', productosActualizados);
+            } catch (error) {
+                console.error('Error al eliminar el producto:', error);
+            }
+        })
+    } catch (error) {
+        console.error("Error de conexión");
+    }
 })
     //PRODUCTOS
-/* 
-    const products= await Producto.getProduct()
-    socketServer.emit('products', products)
-
-    socket.on('addProduct', async (producto) => {
-        const product= await Producto.addproduct(producto);
-        const update = await Producto.updateProduct(product)
-        socketServer.emit('productUpdate', update)
-    })
-    socket.on('deleteProduct', async (productId) => {
-            const producto = await Producto.deleteProduct(+productId);
-            socketServer.emit('productDelete', producto);
-    socket.on('disconnect', () => {
-    console.log('Cliente desconectado');
-})
-    })}) */

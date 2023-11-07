@@ -2,38 +2,49 @@ import { Router } from "express";
 import { ProduManager } from "../dao/manager/productmana.js";
 import { cartManager } from "../dao/manager/cartsmana.js";
 
+
 const router = Router ();
 
-router.get('/home', async (req, res) => {
-res.render("home")
-}
-)
+router.get("/home", async (req, res) => {
+  try {
+      const products = await ProduManager.findAll(req.query);
+      const productsFinal = products.info.results;
+      const clonedProducts = productsFinal.map(product => Object.assign({}, product._doc));
+      const result = clonedProducts;
+      const paginate = products.info.pages;
+      const sort = req.query.orders;
+      console.log(result);
+      res.render("home",  {products: result, paginate: paginate, sort: sort, style:"product"} );
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Error interno del servidor");
+  }
+});
 router.get('/realtimeproducts', async (req,res) => {
     res.render('realTimeProducts')
 })
 router.get('/chat', async (req,res) => {
     res.render("chat")
 })
-router.get("/products", async (req, res) => {
+router.get('/carts/:cid', async (req, res) => {
+  const { cid } = req.params;
+
   try {
-    const products = await ProduManager.findAll({limit:10, page:1, sort:{}, query:{} }).lean()
-    const docs = products.payload.docs
-    res.render("products",{products: docs});
+      const cart = await cartManager.findById(cid);
+
+      if (!cart) {
+          return res.status(404).send('Carrito no encontrado');
+      }
+      const cartProducts = cart.products.map(doc => doc.toObject());
+
+      
+      console.log(cartProducts);
+      res.render('carts', { products:cartProducts, style:"product" });
   } catch (error) {
-    return error
+      console.error(error);
+      res.status(500).send('Error interno del servidor');
   }
 });
-  router.get("/carts/:idCart", async(req,res)=>{
-    try {
-      const {idCart} = req.params
-      const cart = await cartManager.findCartById(idCart)
-      const products = cart.products
-      res.render("cart",{products})
-      console.log(products)
-    } catch (error) {
-      return error
-    }
-  })
 
 
 
