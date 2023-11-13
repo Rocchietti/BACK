@@ -1,67 +1,59 @@
 import { cartModel } from "../models/carts.model.js";
 
 class CartManager {
+    async findAll() {
+        const result = await cartModel.find();
+        return result;
+    }
         async createCart() {
             const newCart = {products: [] };
             const response = await cartModel.create(newCart)
             return response 
         }
         async findCartById(idCart) {
-            const response = await cartModel.findById(idCart).populate({path:'products.product', model: 'Products', select: ["title", "description", "price", "code"]});
+            const response = await cartModel.findById(idCart).populate('products.product', ["title", "description", "price", "code"]);
             console.log(response);
             return response
         }
         async addProductToCart(idCart, idProduct) {
             const cart = await cartModel.findById(idCart)
-            const productIndex = cart.products.findIndex((p)=>p.product.equals(idProduct))
-            if(productIndex === -1) {
-                cart.products.push({product:idProduct,quantity:1})
+                const productIndex = cart.products.findIndex((p)=>p.product===idProduct)
+                console.log(productIndex);
+            if(productIndex !== -1) {
+                cart.products[productIndex].quantity+=1
             }else {
-                cart.products[productIndex].quantity++;
+                cart.products.push({product: idProduct, quantity:1})
             }
             return cart.save()
         }
         async deleteProductToCart(idCart, idProduct){
             const cart = await cartModel.findById(idCart)
-            const productIndex = cart.products.findIndex((p)=>p.product._id.equals(idProduct))
-            if(productIndex === 1){
-                const dlt = cart.products.filter(product => product != productIndex)
-                return dlt
+            const productIndex = cart.products.findIndex((p)=>p.product===idProduct)
+            if(productIndex !== -1){
+                if(cart.products[productIndex].quantity > 1){
+                    cart.products[productIndex].quantity -= 1
+                }
             }else {
-                console.log('Product not found');
+                cart.products.splice(productIndex, 1)
             }
             return cart.save()
-        }
-        async UpdateCart(idCart, productNew) {
-            const cartById = await cartModel.findById(idCart);
-
-            const newProduct = productNew;
-    
-            console.log(cartById.products);
-
-            cartById.products = newProduct;
-    
-            await cartById.save()
-    
-            return cartById
         }
         async deleteCart(idCart){
-            const cart = await cartModel.deleteOne({_id: idCart});
-            if(!cart){
-                return "cart does not exist"
+            const cart = await cartModel.findById(idCart);
+            if (cart) {
+                cart.products = [];
+            } else {
+                res.status(200).json({ message: "Cart not found"});
             }
-            return cart.save()
+            return cart.save();
         }
         async updateQuantity(idCart, idProduct, quantity) {
             const cart = await cartModel.findById(idCart);
-            if(!cart){
-                return "cart does not exist"
-            }
-            const productIndex = cart.products.findIndex((p)=>p.product.equals(idProduct))
-            if(productIndex === -1) {
-                return "product does not exist"
+            const productIndex = cart.products.findIndex((p)=>p.product===idProduct)
+            if(productIndex !== -1) {
+                cart.products[productIndex].quantity= quantity;
             }else {
-                cart.products[productIndex]=quantity
+                cart.products.push({product:idProduct,quantity: quantity });
             }
             return cart.save()
         }

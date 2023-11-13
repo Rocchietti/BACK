@@ -2,13 +2,14 @@ import express from 'express'
 import cartRouter from './routes/carts.router.js';
 import productsRouter from './routes/products.router.js'
 import viewsRouter from './routes/views.router.js'
+import sessionRouter from './routes/session.router.js'
 import {__dirname } from './utils.js'
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
-import { Producto } from './dao/FS/ProductManager.js';
 import { cartManager } from './dao/manager/cartsmana.js';
 import { ProduManager } from './dao/manager/productmana.js';
 import { chatMana } from './dao/manager/chatmana.js';
+
 //db
 import './db/configDB.js'
 
@@ -28,6 +29,8 @@ app.use(express.static(__dirname+"/public"))
 app.use("/api/productos", productsRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/views", viewsRouter);
+app.use("/api/session", sessionRouter);
+
 
 
 const httpServer = app.listen(PORT, () => {
@@ -37,10 +40,11 @@ const httpServer = app.listen(PORT, () => {
 const socketServer = new Server (httpServer) 
 
 socketServer.on('connection', async (socket) => {
-    console.log('cliente conectado');
+    console.log(`cliente conectado ${socket.id}`);
 //CHAT
     socket.on("newUser", (usuario) => {
-        socket.broadcast.emit("userConnect", usuario )
+        socket.broadcast.emit("userConnect", usuario );
+        socket.emit('connected')
     })
     socket.on("message", async (infoMessage) => {
         await chatMana.createOne(infoMessage);
@@ -49,7 +53,7 @@ socketServer.on('connection', async (socket) => {
     });
 
     try {
-        const productosActualizados = await ProduManager.findAll(objeto);
+        const productosActualizados = await ProduManager.findAll(obj);
         console.log(productosActualizados);
         socketServer.emit('productosActualizados', productosActualizados);
 
@@ -75,5 +79,8 @@ socketServer.on('connection', async (socket) => {
     } catch (error) {
         console.error("Error de conexión");
     }
+    socket.on('disconnect', () => {
+        console.log('Un cliente se ha desconectado.');
+    });
 })
     //PRODUCTOS

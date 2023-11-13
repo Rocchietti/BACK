@@ -1,22 +1,7 @@
-
-{{#if products.length}}
-    <div class="product-cards">
-        {{#each products}}
-        <div class="product-card">
-            <h4>TITLE: {{title}}</h4>
-            <p>DESCRIPTION: {{description}}</p>
-            <p>PRICE: ${{price}}</p>
-            <p>STOCK: {{stock}}</p>
-            <p>CATEGORY: {{category}}</p>
-            <button class="add-to-cart-btn" data-product-id="{{_id}}">Add to Cart</button>
-        </div>
-        {{/each}}
-    </div>
-
-    <div class="pagination">
-        <button id="prev-page" {{#if prevPage}}data-page="{{prevPage}}"{{/if}}>Previous Page</button>
-        <button id="next-page" {{#if nextPage}}data-page="{{nextPage}}"{{/if}}>Next Page</button>
-    </div>
-{{else}}
-    <p>No products available.</p>
-{{/if}} 
+{{!-- {{#each products}}
+  <h2>{{title}}</h2>
+  <p>{{description}}</p>
+  <p> {{price}}</p>
+  <p> {{code}}</p>
+  <p> {{id}}</p>
+{{/each}} --}}

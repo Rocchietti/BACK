@@ -23,9 +23,8 @@ class ProductManager {
                 ? `http://localhost:8080/api/products?page=${response.page - 1}`
                 : null,
         };
-        const docs = response.docs;
         console.log(info);
-        return {info, docs};
+        return {info};
     }
         async findById(id) {
             const response = await productsModel.findById(id);

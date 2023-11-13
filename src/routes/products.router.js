@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { __dirname } from "../utils.js"
 import { ProduManager } from '../dao/manager/productmana.js';
 
 const router = Router();
@@ -39,9 +40,8 @@ router.delete('/:pid', async (req, res) => {
 });
 router.put('/:pid', async (req, res) => {
     const { pid } = req.params;
-    const data = req.body
     try {
-        const response = await ProduManager.updateOne(pid, data)
+        const response = await ProduManager.updateOne(pid, req.body)
         if (!response) {
             res.status(404).json({ message: 'Product not found with the id provided' })
         }
@@ -52,13 +52,32 @@ router.put('/:pid', async (req, res) => {
 });
 
 router.post('/', async (req,res) => {
+    const { title, description, price, code } = req.body;
+    if (!title || !description || !price || !code) {
+        return res.status(400).json({ message: "Some data is missing" });
+    }
     try {
-        const createdProduct = await ProduManager.createOne(req.body);
-        res.status(200).json({
-        message : 'Product created',  product: createdProduct
-        })
+        const response = await ProduManager.createOne(req.body);
+        res.status(200).json({ message: "Producto created", response });
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message });
     }
 })
+router.post("/change", async (req, res) => {
+    const accion = req.body.accion;
+    const id = req.body.id;
+    try {
+        if (accion === "AGREGAR") {
+            const productNew = ProduManager.createOne(req.body);
+        } 
+        else {
+            ProduManager.deleteOne(+id);
+        }
+        res.status(200).send("Operación exitosa");
+
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Error");
+    }
+});
 export default router;

@@ -1,11 +1,12 @@
 import { Router } from "express";
 import { ProduManager } from "../dao/manager/productmana.js";
 import { cartManager } from "../dao/manager/cartsmana.js";
+import { Users } from "../dao/manager/usermana.js";
 
 
 const router = Router ();
 
-router.get("/home", async (req, res) => {
+router.get("/products", async (req, res) => {
   try {
       const products = await ProduManager.findAll(req.query);
       const productsFinal = products.info.results;
@@ -14,36 +15,42 @@ router.get("/home", async (req, res) => {
       const paginate = products.info.pages;
       const sort = req.query.orders;
       console.log(result);
-      res.render("home",  {products: result, paginate: paginate, sort: sort, style:"product"} );
+      res.render("products", {products: result, paginate: paginate, sort: sort, style: "product"} );
   } catch (error) {
       console.error(error);
       res.status(500).send("Error interno del servidor");
   }
 });
-router.get('/realtimeproducts', async (req,res) => {
-    res.render('realTimeProducts')
-})
-router.get('/chat', async (req,res) => {
-    res.render("chat")
-})
-router.get('/carts/:cid', async (req, res) => {
-  const { cid } = req.params;
-
-  try {
-      const cart = await cartManager.findById(cid);
-
-      if (!cart) {
-          return res.status(404).send('Carrito no encontrado');
-      }
-      const cartProducts = cart.products.map(doc => doc.toObject());
-
-      
-      console.log(cartProducts);
-      res.render('carts', { products:cartProducts, style:"product" });
-  } catch (error) {
-      console.error(error);
-      res.status(500).send('Error interno del servidor');
-  }
+router.get("/login", (req, res) => {
+    if (req.session) {
+        if (req.session.user) return res.redirect("/home");
+    }
+    res.render("login");
+});
+  
+router.get("/signup", (req, res) => {
+    if (req.session) {
+        if (req.session.user) return res.redirect("/login");
+    }
+    res.render("signup");
+});
+router.get("/carts/:cid", async(req,res)=>{
+    try {
+      const {cid} = req.params
+      const cart = await cartManager.findCartById(cid)
+      const products = cart.products
+      res.render("cart",{products})
+      console.log(products)
+    } catch (error) {
+      return error
+    }
+  })
+router.get("/changeproducts", async (req, res) => {
+    try {
+    res.render("changeproducts");
+    } catch {
+        error
+    }
 });
 
 
