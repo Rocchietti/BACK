@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { Users } from "../db/managers/usersManager.js";
+import { Users } from "../dao/manager/usermana.js";
+
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -14,12 +15,12 @@ router.get("/", async (req, res) => {
 router.get("/:idUser", async (req, res) => {
   const { idUser } = req.params;
   try {
-    const user = await usersManager.findById(idUser);
-    res.status(200).json({ message: "User", user });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+  const user = await Users.findById(idUser);
+  res.status(200).json({ message: "User", user });
+} catch (err) {
+  res.status(500).json({ error: err.message });
+}
+ });
 
 router.get("/:email", async (req, res) => {
   const { email } = req.params;
@@ -54,5 +55,6 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 export default router;

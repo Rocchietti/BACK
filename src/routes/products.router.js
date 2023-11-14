@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-        const products = await ProduManager.findAll(req.query);
+        const products = await ProduManager.findAll();
         res.status(200).json({ message: 'lista de productos', products })
     } catch (error) {
         res.status(500).json({ message: 'Error Server' })

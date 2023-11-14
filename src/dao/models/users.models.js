@@ -6,7 +6,7 @@ const usersSchema = new mongoose.Schema({
         type: String,
         required: true,      
     },  
-    lastName: {
+    last_name: {
         type: String,
         required: true,
     },
@@ -14,14 +14,12 @@ const usersSchema = new mongoose.Schema({
         type: String,
         required: true,
         index: true,
+        unique: true
     },
     password: {
         type: String,
         required: true,
     },
-    isAdmin: {
-        type: Boolean,
-    }
 });
 /* usersSchema.plugin(mongoosePaginate); */
 export const usersModel = mongoose.model("Users", usersSchema);
