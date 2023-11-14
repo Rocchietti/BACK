@@ -38,6 +38,7 @@ const isPasswordValid = password === user.password
     {email, name:user.name, isAdmin: true}
     : {email, name:user.name, isAdmin: false} 
     req.session.user = sessionInfo
+    console.log(sessionInfo);
     const products = await ProduManager.findAll(req.query)
     res.render("home" , {products: products, user:req.session.user, style:"product"});
 } catch (error) {
@@ -48,6 +49,6 @@ const isPasswordValid = password === user.password
     req.session.destroy(()=>{
     res.redirect("/login")
 })
-})
+    })
     ;
 export default router;
