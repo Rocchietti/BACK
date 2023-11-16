@@ -11,7 +11,7 @@ class CartManager {
             return response 
         }
         async findCartById(idCart) {
-            const response = await cartModel.findById(idCart).populate('products.product', ["title", "description", "price", "code"]);
+            const response = await cartModel.findById(idCart).populate('products.product', ["title", "description", "price", "code"]).lean();
             console.log(response);
             return response
         }

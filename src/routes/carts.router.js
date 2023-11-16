@@ -8,7 +8,6 @@ const router = Router();
 router.get("/", async (req, res) => {
     try {
         const carts = await cartManager.findAll();
-
         if (!carts || carts.length === 0) {
             return res.status(404).json({ message: "No carts found" });
         }
