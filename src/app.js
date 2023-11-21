@@ -14,7 +14,8 @@ import usersRouter from './routes/users.router.js'
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-
+import './public/js/passport.js'
+import passport from 'passport';
 //db
 import './db/configDB.js'
 
@@ -44,6 +45,10 @@ app.use(session({
 }
 )
 )
+//passport 
+app.use(passport.initialize())
+app.use(passport.session())
+
 //req ---> params, query, body
 
 app.use("/api/productos", productsRouter);
